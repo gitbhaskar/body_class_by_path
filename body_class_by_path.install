@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function body_class_by_path_uninstall() {
+  // Delete all module variables and then clear the variables cache.
+  db_query("DELETE FROM {body_class_by_path}");
+  cache_clear_all('body_class_by_path', 'cache');
+}
+
+
+function body_class_by_path_schema(){
+  $schema['body_class_by_path'] = array(
+    'description' => 'Holds the data for body class.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The unique ID for our element.',
+        'type' => 'serial',
+      ),
+      'name' => array(
+        'description' => 'The title of the path.',
+        'type' => 'varchar',
+        'length' => 250,
+      ),
+      'path' => array(
+        'description' => 'The path value and it is save as url.',
+        'type' => 'varchar',
+        'length' => 250,
+      ),
+	  'classname' => array(
+        'description' => 'The classname value for a particular url.',
+        'type' => 'varchar',
+        'length' => 250,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}

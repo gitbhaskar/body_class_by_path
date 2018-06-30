@@ -1,0 +1,5 @@
+name = Body Class By Path
+description = Add class on body tag on a url.
+project = 'body_class_by_path'
+version = '7.x-1.0'
+core = '7.x'
